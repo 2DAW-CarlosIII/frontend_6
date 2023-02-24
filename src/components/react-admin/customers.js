@@ -9,7 +9,8 @@ import {
   Create,
   SimpleForm,
   ReferenceInput,
-  TextInput
+  TextInput,
+  AutocompleteInput
 } from 'react-admin';
 
 import { useRecordContext } from 'react-admin';
@@ -41,7 +42,7 @@ export const CustomerList = () => {
           <TextField source="job_title" />
           <TextField source="city" />
           <TextField source="country" />
-          <ReferenceField source="user_id" reference="users" link="show">
+          <ReferenceField source="user_id" reference="users">
             <TextField source="name" />
           </ReferenceField>
           <EditButton />
@@ -60,7 +61,9 @@ export const CustomerEdit = () => (
   <Edit title={<CustomerTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
-      <ReferenceInput source="user_id" reference="users" />
+      <ReferenceInput source="user_id" reference="users">
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="first_name" />
       <TextInput source="last_name" />
       <TextInput source="job_title" />
@@ -73,7 +76,9 @@ export const CustomerEdit = () => (
 export const CustomerCreate = () => (
   <Create>
     <SimpleForm>
-      <ReferenceInput source="user_id" reference="users" />
+      <ReferenceInput source="user_id" reference="users">
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="first_name" />
       <TextInput source="last_name" />
       <TextInput source="job_title" />
